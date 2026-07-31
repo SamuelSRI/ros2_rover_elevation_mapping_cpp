@@ -1,0 +1,35 @@
+elevation_mapping_node:
+  ros__parameters:
+    input_cloud_topic: "/merged_cloud"
+    output_grid_topic: "/traversability_grid"
+    output_cloud_topic: "/local_cloud_filtered"
+
+    target_frame: "base_link"
+
+    # Ray tracing. Both merged sensors are approximated as originating
+    # from as_dt1_link because the two sensors are only a few cm apart.
+    raytrace_enabled: true
+    raytrace_sensor_frame: "as_dt1_link"
+    raytrace_min_range: 0.30
+    raytrace_max_range: 7.0
+    raytrace_endpoint_margin_cells: 1
+
+    map_size_x: 10.0
+    map_size_y: 10.0
+    resolution: 0.10
+
+    min_z: -1.0
+    max_z: 2.0
+    voxel_leaf_size: 0.05
+
+    normal_radius: 0.25
+    max_slope_deg: 20.0
+    hard_slope_deg: 30.0
+
+    # Height is expressed in base_link.
+    # A 360-degree LiDAR return above lethal_obstacle_height is marked 100.
+    obstacle_min_height: 0.10
+    lethal_obstacle_height: 0.20
+    obstacle_max_height: 1.50
+
+    roughness_threshold: 0.08
